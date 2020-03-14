@@ -1,0 +1,1 @@
+/home/lbf10/ardupilot_ws/devel/.private/multirotor_test/lib/pkgconfig/multirotor_test.pc

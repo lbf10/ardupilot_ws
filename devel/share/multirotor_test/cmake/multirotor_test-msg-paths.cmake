@@ -1,0 +1,1 @@
+/home/lbf10/ardupilot_ws/devel/.private/multirotor_test/share/multirotor_test/cmake/multirotor_test-msg-paths.cmake

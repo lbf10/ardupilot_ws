@@ -1,0 +1,7 @@
+mavros/libmavconn
+/home/lbf10/ardupilot_ws/devel/.private/libmavconn/cmake.lock /home/lbf10/ardupilot_ws/devel/./cmake.lock
+/home/lbf10/ardupilot_ws/devel/.private/libmavconn/lib/libmavconn.so /home/lbf10/ardupilot_ws/devel/lib/libmavconn.so
+/home/lbf10/ardupilot_ws/devel/.private/libmavconn/lib/pkgconfig/libmavconn.pc /home/lbf10/ardupilot_ws/devel/lib/pkgconfig/libmavconn.pc
+/home/lbf10/ardupilot_ws/devel/.private/libmavconn/share/libmavconn/cmake/libmavconn-extras.cmake /home/lbf10/ardupilot_ws/devel/share/libmavconn/cmake/libmavconn-extras.cmake
+/home/lbf10/ardupilot_ws/devel/.private/libmavconn/share/libmavconn/cmake/libmavconnConfig-version.cmake /home/lbf10/ardupilot_ws/devel/share/libmavconn/cmake/libmavconnConfig-version.cmake
+/home/lbf10/ardupilot_ws/devel/.private/libmavconn/share/libmavconn/cmake/libmavconnConfig.cmake /home/lbf10/ardupilot_ws/devel/share/libmavconn/cmake/libmavconnConfig.cmake

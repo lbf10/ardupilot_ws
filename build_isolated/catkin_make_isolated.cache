@@ -1,0 +1,2 @@
+mavlink:mavros/libmavconn:mavros/mavros:mavros/mavros_extras:mavros/mavros_msgs:mavros/test_mavros:multirotor_test
+-G Unix Makefiles -DCATKIN_DEVEL_PREFIX=/home/lbf10/ardupilot_ws/devel_isolated -DCMAKE_INSTALL_PREFIX=/home/lbf10/ardupilot_ws/install_isolated

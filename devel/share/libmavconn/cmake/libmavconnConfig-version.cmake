@@ -1,0 +1,1 @@
+/home/lbf10/ardupilot_ws/devel/.private/libmavconn/share/libmavconn/cmake/libmavconnConfig-version.cmake

@@ -1,0 +1,6 @@
+devel_space: /home/lbf10/ardupilot_ws/devel
+install: false
+install_space: /home/lbf10/ardupilot_ws/install
+profile: default
+source_space: /home/lbf10/ardupilot_ws/src
+workspace: /home/lbf10/ardupilot_ws

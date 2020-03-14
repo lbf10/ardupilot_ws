@@ -1,0 +1,1 @@
+/home/lbf10/ardupilot_ws/devel/.private/multirotor_test/lib/python2.7/dist-packages/multirotor_test/__init__.py

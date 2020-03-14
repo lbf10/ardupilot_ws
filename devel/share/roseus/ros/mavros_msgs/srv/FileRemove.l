@@ -1,0 +1,1 @@
+/home/lbf10/ardupilot_ws/devel/.private/mavros_msgs/share/roseus/ros/mavros_msgs/srv/FileRemove.l

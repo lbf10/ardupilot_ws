@@ -1,0 +1,1 @@
+/home/lbf10/ardupilot_ws/devel/.private/multirotor_test/share/roseus/ros/multirotor_test/manifest.l

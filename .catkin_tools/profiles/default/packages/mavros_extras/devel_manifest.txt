@@ -1,0 +1,8 @@
+mavros/mavros_extras
+/home/lbf10/ardupilot_ws/devel/.private/mavros_extras/cmake.lock /home/lbf10/ardupilot_ws/devel/./cmake.lock
+/home/lbf10/ardupilot_ws/devel/.private/mavros_extras/lib/libmavros_extras.so /home/lbf10/ardupilot_ws/devel/lib/libmavros_extras.so
+/home/lbf10/ardupilot_ws/devel/.private/mavros_extras/lib/mavros_extras/visualization /home/lbf10/ardupilot_ws/devel/lib/mavros_extras/visualization
+/home/lbf10/ardupilot_ws/devel/.private/mavros_extras/lib/mavros_extras/servo_state_publisher /home/lbf10/ardupilot_ws/devel/lib/mavros_extras/servo_state_publisher
+/home/lbf10/ardupilot_ws/devel/.private/mavros_extras/lib/pkgconfig/mavros_extras.pc /home/lbf10/ardupilot_ws/devel/lib/pkgconfig/mavros_extras.pc
+/home/lbf10/ardupilot_ws/devel/.private/mavros_extras/share/mavros_extras/cmake/mavros_extrasConfig-version.cmake /home/lbf10/ardupilot_ws/devel/share/mavros_extras/cmake/mavros_extrasConfig-version.cmake
+/home/lbf10/ardupilot_ws/devel/.private/mavros_extras/share/mavros_extras/cmake/mavros_extrasConfig.cmake /home/lbf10/ardupilot_ws/devel/share/mavros_extras/cmake/mavros_extrasConfig.cmake

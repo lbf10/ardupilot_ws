@@ -1,0 +1,2 @@
+
+-G Unix Makefiles -DCATKIN_DEVEL_PREFIX=/home/lbf10/ardupilot_ws/src/multirotor_test/devel_isolated -DCMAKE_INSTALL_PREFIX=/home/lbf10/ardupilot_ws/src/multirotor_test/install_isolated

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/lbf10/ardupilot_ws/devel/.private/mavros_extras/setup.sh
