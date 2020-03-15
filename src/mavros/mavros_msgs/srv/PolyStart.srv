@@ -1,0 +1,6 @@
+# Start mission defined by polynomial waypoints
+# Returns success status on the Start
+
+float32 delay # [s] Delay to start the mission
+---
+bool success

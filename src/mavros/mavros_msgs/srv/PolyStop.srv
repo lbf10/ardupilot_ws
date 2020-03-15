@@ -1,0 +1,6 @@
+# Stop mission defined by polynomial waypoints
+# Returns success status on the commanding stop
+
+float32 delay # [s] Delay to stop the mission
+---
+bool success

@@ -1,0 +1,5 @@
+# Clear polynomial waypoints already on memory
+# Returns success status on commanding the clear
+
+---
+bool success
