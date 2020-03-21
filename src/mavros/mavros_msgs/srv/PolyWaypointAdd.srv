@@ -1,0 +1,6 @@
+# Send waypoint to device
+# Returns success status
+
+mavros_msgs/PolyWaypoint waypoint
+---
+bool success

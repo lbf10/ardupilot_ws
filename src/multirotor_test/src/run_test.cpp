@@ -6,6 +6,11 @@
 #include "mavros_msgs/CommandBool.h"
 #include "mavros_msgs/CommandTOL.h"
 #include "mavros_msgs/CommandLong.h"
+#include "mavros_msgs/PolyWaypointAdd.h"
+#include "mavros_msgs/PolyStop.h"
+#include "mavros_msgs/PolyStart.h"
+#include "mavros_msgs/PolyClear.h"
+#include "mavros_msgs/PolyWaypoint.h"
 // #include "mavros_msgs/SetMode.h"
 // #include "mavros_msgs/Param.h"
 #include "mavros_msgs/State.h"
@@ -40,6 +45,10 @@ int main(int argc, char **argv)
   ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming");
   ros::ServiceClient takeoff_client = nh.serviceClient<mavros_msgs::CommandTOL>("mavros/cmd/takeoff");
   ros::ServiceClient command_client = nh.serviceClient<mavros_msgs::CommandLong>("mavros/cmd/command");
+  ros::ServiceClient polyClear_client = nh.serviceClient<mavros_msgs::PolyClear>("polyClear");
+  ros::ServiceClient polyStart_client = nh.serviceClient<mavros_msgs::PolyStart>("polyStart");
+  ros::ServiceClient polyStop_client = nh.serviceClient<mavros_msgs::PolyStop>("polyStop");
+  ros::ServiceClient polyAdd_client = nh.serviceClient<mavros_msgs::PolyWaypointAdd>("polyAddWaypoint");
   // ros::ServiceClient get_param_client = nh.serviceClient<mavros_msgs::ParamGet>("mavros/param/get");
   // ros::ServiceClient set_param_client = nh.serviceClient<mavros_msgs::ParamSet>("mavros/param/set");
   //ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
@@ -49,6 +58,10 @@ int main(int argc, char **argv)
   mavros_msgs::CommandBool arming_srv;
   mavros_msgs::CommandTOL takeoff_srv;
   mavros_msgs::CommandLong command_srv;
+  mavros_msgs::PolyClear polyClear_srv;
+  mavros_msgs::PolyStart polyStart_srv;
+  mavros_msgs::PolyStop polyStop_srv;
+  mavros_msgs::PolyWaypointAdd polyAdd_srv;
   // mavros_msgs::ParamGet get_param_srv;
   // mavros_msgs::ParamSet set_param_srv;
   //mavros_msgs::SetMode set_mode_srv;
