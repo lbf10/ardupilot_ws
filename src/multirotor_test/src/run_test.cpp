@@ -45,10 +45,10 @@ int main(int argc, char **argv)
   ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming");
   ros::ServiceClient takeoff_client = nh.serviceClient<mavros_msgs::CommandTOL>("mavros/cmd/takeoff");
   ros::ServiceClient command_client = nh.serviceClient<mavros_msgs::CommandLong>("mavros/cmd/command");
-  ros::ServiceClient polyClear_client = nh.serviceClient<mavros_msgs::PolyClear>("polyClear");
-  ros::ServiceClient polyStart_client = nh.serviceClient<mavros_msgs::PolyStart>("polyStart");
-  ros::ServiceClient polyStop_client = nh.serviceClient<mavros_msgs::PolyStop>("polyStop");
-  ros::ServiceClient polyAdd_client = nh.serviceClient<mavros_msgs::PolyWaypointAdd>("polyAddWaypoint");
+  ros::ServiceClient polyClear_client = nh.serviceClient<mavros_msgs::PolyClear>("mavros/poly_traj/polyClear");
+  ros::ServiceClient polyStart_client = nh.serviceClient<mavros_msgs::PolyStart>("mavros/poly_traj/polyStart");
+  ros::ServiceClient polyStop_client = nh.serviceClient<mavros_msgs::PolyStop>("mavros/poly_traj/polyStop");
+  ros::ServiceClient polyAdd_client = nh.serviceClient<mavros_msgs::PolyWaypointAdd>("mavros/poly_traj/polyAddWaypoint");
   // ros::ServiceClient get_param_client = nh.serviceClient<mavros_msgs::ParamGet>("mavros/param/get");
   // ros::ServiceClient set_param_client = nh.serviceClient<mavros_msgs::ParamSet>("mavros/param/set");
   //ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
@@ -150,6 +150,20 @@ int main(int argc, char **argv)
   acceleration << 0.0,0.0,0.0;
 
   local_pos_pub.publish(pose);
+
+  // PolyClear
+  ROS_INFO("Clearing Poly Waypoints...");
+  polyClear_client.call(polyClear_srv);
+
+  std::this_thread::sleep_for(std::chrono::seconds(10));
+  if(polyClear_srv.response.success){
+  	ROS_INFO("Cleared!");
+  }
+  else{
+  	ROS_INFO("Clear fail!");
+  } 
+
+
 
   // Arm
   ROS_INFO("Arming...");

@@ -52,6 +52,8 @@ private:
         msg.yaw = req.waypoint.yaw;
         msg.yaw_vel = req.waypoint.yaw_vel;
         msg.yaw_acc = req.waypoint.yaw_acc;
+		
+		//ROS_INFO("ADD WP poly msg id: %4u \n",msg.MSG_ID);
         
 		res.success = true;
 		try {
@@ -68,6 +70,9 @@ private:
         mavlink::common::msg::POLY_CLEAR msg;
 		m_uas->msg_set_target(msg);
         
+
+		//ROS_INFO("CLEAR poly msg id: %4u \n",msg.MSG_ID);
+
 		res.success = true;
 		try {
 			UAS_FCU(m_uas)->send_message(msg);
@@ -84,6 +89,9 @@ private:
 		m_uas->msg_set_target(msg);
         msg.delay = req.delay;
         
+
+		//ROS_INFO("START poly msg id: %4u \n",msg.MSG_ID);
+
 		res.success = true;
 		try {
 			UAS_FCU(m_uas)->send_message(msg);
@@ -101,6 +109,8 @@ private:
 		m_uas->msg_set_target(msg);
         msg.delay = req.delay;
         
+
+		//ROS_INFO("STOP poly msg id: %4u \n",msg.MSG_ID);
 		res.success = true;
 		try {
 			UAS_FCU(m_uas)->send_message(msg);
