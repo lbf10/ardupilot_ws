@@ -167,7 +167,7 @@ int main(int argc, char **argv)
 	ROS_INFO("End");
 	return 0;
   } 
-  sleep(3);
+  std::this_thread::sleep_for(std::chrono::seconds(3));
   //arming_srv.request.value = true;
   // //arming_client.call(arming_srv);
   // if(arming_srv.response.success){
@@ -195,7 +195,7 @@ int main(int argc, char **argv)
 	ROS_INFO("End");
 	return 0;
   } 
-  sleep(3);
+  std::this_thread::sleep_for(std::chrono::seconds(3));
 
   auto t_ini = chrono::steady_clock::now();
   auto t_now = t_ini;
