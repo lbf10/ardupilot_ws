@@ -1,7 +1,7 @@
 #ifndef TRAJ_GEN_H
 #define TRAJ_GEN_H
 
-#include <Eigen/Eigen>
+#include </usr/include/eigen3/Eigen/Eigen>
 #include <cmath>
 #include <string>
 #include <iostream>

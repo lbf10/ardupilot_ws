@@ -154,18 +154,48 @@ int main(int argc, char **argv)
   // PolyClear
   ROS_INFO("Clearing Poly Waypoints...");
   polyClear_client.call(polyClear_srv);
-
-  std::this_thread::sleep_for(std::chrono::seconds(10));
   if(polyClear_srv.response.success){
   	ROS_INFO("Cleared!");
   }
   else{
   	ROS_INFO("Clear fail!");
   } 
+  std::this_thread::sleep_for(std::chrono::seconds(1));
 
+    // PolyAdd
+  ROS_INFO("Adding Poly Waypoints...");
+  for (int it=0;it<wp_matrix.cols();it++){
+      if(it==0){
+        polyAdd_srv.request.waypoint.timeto = wp_times(it);
+      }
+      else{
+        polyAdd_srv.request.waypoint.timeto = wp_times(it)-wp_times(it-1);
+      }
+      polyAdd_srv.request.waypoint.x_lat = wp_matrix(0,it);
+      polyAdd_srv.request.waypoint.y_long = wp_matrix(1,it);
+      polyAdd_srv.request.waypoint.z_alt = wp_matrix(2,it);
+      polyAdd_srv.request.waypoint.yaw = wp_matrix(3,it);
+      polyAdd_srv.request.waypoint.x_vel = wp_matrix(4,it);
+      polyAdd_srv.request.waypoint.y_vel = wp_matrix(5,it);
+      polyAdd_srv.request.waypoint.z_vel = wp_matrix(6,it);
+      polyAdd_srv.request.waypoint.yaw_vel = wp_matrix(7,it);
+      polyAdd_srv.request.waypoint.x_acc = wp_matrix(8,it);
+      polyAdd_srv.request.waypoint.y_acc = wp_matrix(9,it);
+      polyAdd_srv.request.waypoint.z_acc = wp_matrix(10,it);
+      polyAdd_srv.request.waypoint.yaw_acc = wp_matrix(11,it);
 
-
-  // Arm
+      polyAdd_client.call(polyAdd_srv);
+      if(polyAdd_srv.response.success){
+        ROS_INFO("Waypoint %d added.",it);
+      }
+      else{
+        ROS_INFO("Waypoint %d transmition failed.",it);
+      } 
+      std::this_thread::sleep_for(std::chrono::seconds(1));
+  }
+  ROS_INFO("Finished transmitting poly waypoints!");
+  
+  // Force Arm
   ROS_INFO("Arming...");
   command_srv.request.broadcast = 1;
   command_srv.request.command = 400;
@@ -211,31 +241,43 @@ int main(int argc, char **argv)
   } 
   std::this_thread::sleep_for(std::chrono::seconds(3));
 
-  auto t_ini = chrono::steady_clock::now();
-  auto t_now = t_ini;
-  double t = 0;
-  float quaternion[4];
-  ROS_INFO("Publishing set points.");
-  while(ros::ok()){
-      t_now = chrono::steady_clock::now();
-      t = chrono::duration_cast<chrono::milliseconds>(t_now - t_ini).count()/1000.0;
-      tg.desiredTrajectory(t, position, velocity, acceleration, yaw);
-      cout << "Position command = " << position.transpose() << " " << yaw << endl;
-      pose.pose.position.x = position(0);
-      pose.pose.position.y = position(1);
-      pose.pose.position.z = position(2);
-      mavlink_euler_to_quaternion(0,0,yaw,quaternion);
-      pose.pose.orientation.w = quaternion[0];
-      pose.pose.orientation.x = quaternion[1];
-      pose.pose.orientation.y = quaternion[2];
-      pose.pose.orientation.z = quaternion[3];
-
-      local_pos_pub.publish(pose);
-      ros::spinOnce();
-      rate.sleep();
+  // PolyStart
+  ROS_INFO("Requesting polynomial trajectory to start...");
+  polyStart_srv.request.delay = 0;
+  polyStart_client.call(polyStart_srv);
+  if(polyStart_srv.response.success){
+    ROS_INFO("Polynomial trajectory started!");
   }
+  else{
+    ROS_INFO("Polynomial trajectory failed.");
+  } 
+  std::this_thread::sleep_for(std::chrono::seconds(1));
 
-  ROS_INFO("Stopped");
+  // auto t_ini = chrono::steady_clock::now();
+  // auto t_now = t_ini;
+  // double t = 0;
+  // float quaternion[4];
+  // ROS_INFO("Publishing set points.");
+  // while(ros::ok()){
+  //     t_now = chrono::steady_clock::now();
+  //     t = chrono::duration_cast<chrono::milliseconds>(t_now - t_ini).count()/1000.0;
+  //     tg.desiredTrajectory(t, position, velocity, acceleration, yaw);
+  //     cout << "Position command = " << position.transpose() << " " << yaw << endl;
+  //     pose.pose.position.x = position(0);
+  //     pose.pose.position.y = position(1);
+  //     pose.pose.position.z = position(2);
+  //     mavlink_euler_to_quaternion(0,0,yaw,quaternion);
+  //     pose.pose.orientation.w = quaternion[0];
+  //     pose.pose.orientation.x = quaternion[1];
+  //     pose.pose.orientation.y = quaternion[2];
+  //     pose.pose.orientation.z = quaternion[3];
+
+  //     local_pos_pub.publish(pose);
+  //     ros::spinOnce();
+  //     rate.sleep();
+  // }
+
+  // ROS_INFO("Stopped");
 
   ros::spin();
 
