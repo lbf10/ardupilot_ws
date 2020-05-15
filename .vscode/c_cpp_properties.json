@@ -6,13 +6,23 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/src/multirotor_test/**",
                 "/usr/include/eigen3",
-                "/opt/ros/**"
+                "/opt/ros/**",
+                "${workspaceFolder}/devel/.private/mavros_msgs/include",
+                "${workspaceFolder}/build",
+                "${workspaceFolder}/devel/.private/mavros_msgs/include",
+                "/opt/gcc-arm-none-eabi-6-2017-q2-update/lib/gcc/arm-none-eabi/6.3.1/include",
+                "/usr/include/linux",
+                "/opt/ros/melodic/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
+            "intelliSenseMode": "clang-x64",
+            "compilerArgs": [
+                "mavlink/include/v2.0/common/",
+                "./src/mavros/*"
+            ]
         }
     ],
     "version": 4

@@ -168,11 +168,7 @@ int main(int argc, char **argv)
   // sleep(3);
   // Takeoff
   ROS_INFO("Taking off...");
-  takeoff_srv.request.latitude = initialPosition(0);
-  takeoff_srv.request.longitude = initialPosition(1);
   takeoff_srv.request.altitude = initialPosition(2);
-  takeoff_srv.request.min_pitch = 0;
-  takeoff_srv.request.yaw = 0;
   takeoff_client.call(takeoff_srv);
   if(takeoff_srv.response.success){
   	ROS_INFO("Lift off!");
