@@ -101,14 +101,16 @@ int main(int argc, char **argv)
   MatrixXd wp_matrix(12,steps);
   ArrayXd wp_times(steps);
 
-  double takeOffTime = 5;
-  double takeOffAltitude = 2;
-  double geronoDuration = 60;
-  tg.geronoToWaypoints(3, 4, 1, geronoDuration, steps, goTo, 0*M_PI,wp_matrix,wp_times);
+  double takeOffTime = 2;
+  double takeOffAltitude = 5;
+  double geronoDuration = 15;
+  //tg.geronoToWaypoints(7, 4, 4, geronoDuration, steps, goTo, 2*M_PI,wp_matrix,wp_times);
+  tg.geronoToWaypoints(0, 0, 0, geronoDuration, steps, goTo, 0,wp_matrix,wp_times);
 
   MatrixXd aux(wp_matrix.rows(),wp_matrix.cols()+2);
   aux << ArrayXd::Zero(wp_matrix.rows()).matrix(),ArrayXd::Zero(wp_matrix.rows()).matrix(),wp_matrix;
   aux.row(2) = (aux.row(2).array()+takeOffAltitude).matrix();
+  aux.row(3) = (aux.row(3).array()+M_PI/2).matrix();
   wp_matrix = aux;
 
   ArrayXd aux1(2+wp_times.size());
@@ -138,7 +140,8 @@ int main(int argc, char **argv)
   cout << "Array de tempos = " << endl << wp_times << endl << endl;
 
   Array3d initialPosition;
-  initialPosition << 0,0,2;
+  //initialPosition << 0,0,takeOffAltitude;
+  initialPosition << 0,0,0;
   tg.setTrajectory(wp_matrix,wp_times,initialPosition,Array3d::Zero(),0,0);
 
   Vector3d position;
@@ -160,7 +163,7 @@ int main(int argc, char **argv)
   else{
   	ROS_INFO("Clear fail!");
   } 
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  //std::this_thread::sleep_for(std::chrono::seconds(1));
 
     // PolyAdd
   ROS_INFO("Adding Poly Waypoints...");
@@ -191,7 +194,7 @@ int main(int argc, char **argv)
       else{
         ROS_INFO("Waypoint %d transmition failed.",it);
       } 
-      std::this_thread::sleep_for(std::chrono::seconds(1));
+      //std::this_thread::sleep_for(std::chrono::seconds(1));
   }
   ROS_INFO("Finished transmitting poly waypoints!");
   
@@ -211,7 +214,7 @@ int main(int argc, char **argv)
 	ROS_INFO("End");
 	return 0;
   } 
-  std::this_thread::sleep_for(std::chrono::seconds(3));
+  //std::this_thread::sleep_for(std::chrono::seconds(3));
   //arming_srv.request.value = true;
   // //arming_client.call(arming_srv);
   // if(arming_srv.response.success){
@@ -224,7 +227,7 @@ int main(int argc, char **argv)
   // } 
   // sleep(3);
   // Takeoff
-  ROS_INFO("Taking off...");
+  /*ROS_INFO("Taking off...");
   takeoff_srv.request.latitude = initialPosition(0);
   takeoff_srv.request.longitude = initialPosition(1);
   takeoff_srv.request.altitude = initialPosition(2);
@@ -238,8 +241,8 @@ int main(int argc, char **argv)
   	ROS_INFO("Take off fail!");
 	ROS_INFO("End");
 	return 0;
-  } 
-  std::this_thread::sleep_for(std::chrono::seconds(3));
+  } */
+  //std::this_thread::sleep_for(std::chrono::seconds(10));
 
   // PolyStart
   ROS_INFO("Requesting polynomial trajectory to start...");
@@ -251,7 +254,7 @@ int main(int argc, char **argv)
   else{
     ROS_INFO("Polynomial trajectory failed.");
   } 
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  //std::this_thread::sleep_for(std::chrono::seconds(1));
 
   // auto t_ini = chrono::steady_clock::now();
   // auto t_now = t_ini;
