@@ -102,10 +102,11 @@ int main(int argc, char **argv)
   ArrayXd wp_times(steps);
 
   double takeOffTime = 2;
-  double takeOffAltitude = 5;
-  double geronoDuration = 15;
-  //tg.geronoToWaypoints(7, 4, 4, geronoDuration, steps, goTo, 2*M_PI,wp_matrix,wp_times);
-  tg.geronoToWaypoints(0, 0, 0, geronoDuration, steps, goTo, 0,wp_matrix,wp_times);
+  double takeOffAltitude = 3;
+  double geronoDuration = 30;
+  tg.geronoToWaypoints(7, 4, 4, geronoDuration, steps, goTo, 2*M_PI,wp_matrix,wp_times);
+  //tg.geronoToWaypoints(7, 4, 4, geronoDuration, steps, goTo, 0,wp_matrix,wp_times);
+  //tg.geronoToWaypoints(0, 0, 0, geronoDuration, steps, goTo, 0,wp_matrix,wp_times);
 
   MatrixXd aux(wp_matrix.rows(),wp_matrix.cols()+2);
   aux << ArrayXd::Zero(wp_matrix.rows()).matrix(),ArrayXd::Zero(wp_matrix.rows()).matrix(),wp_matrix;
